@@ -1,5 +1,20 @@
 import { Button } from "@chakra-ui/button";
-import { Container, ListItem, Text, UnorderedList, VStack, Link, Badge } from "@chakra-ui/layout";
+import {
+  Container,
+  ListItem,
+  Text,
+  UnorderedList,
+  VStack,
+  Link,
+  Badge,
+  Box,
+  Stack,
+  HStack,
+  Wrap,
+  WrapItem,
+  Grid,
+  GridItem,
+} from "@chakra-ui/layout";
 import { Progress } from "@chakra-ui/progress";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -26,21 +41,36 @@ function SearchResults() {
     return <Text>No results</Text>;
   }
   return (
-    <UnorderedList stylePosition="inside">
+    <Grid templateColumns="repeat(3, 1fr)" gap={8} py="1rem">
       {data.results.map(({ id, title, release_date }) => (
-        <ListItem key={id}>
-          <Link href={`/movies/${id}`} passHref>
-            <Button
-              as="a"
-              variant="link"
-              rightIcon={<Badge>{release_date}</Badge>}
-            >
-              <Text as="span">{title} </Text>
-            </Button>
-          </Link>
-        </ListItem>
+        <GridItem
+          maxW="xl"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          key={id}
+          align="center"
+        >
+          <Box minW="300px" pos="relative">
+            <Link href={`/movies/${id}`} passHref>
+              <Box height="50">
+                <Button
+                  as="a"
+                  variant="link"
+                  rightIcon={<Badge>{release_date}</Badge>}
+                ></Button>
+                <Grid>
+                <Button as="a"
+                  variant="link">
+                <Text as="span">{title} </Text>
+                </Button>
+                </Grid>
+              </Box>
+            </Link>
+          </Box>
+        </GridItem>
       ))}
-    </UnorderedList>
+    </Grid>
   );
 }
 
