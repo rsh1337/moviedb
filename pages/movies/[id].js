@@ -1,4 +1,4 @@
-import { Badge, Box, Center, Container, Heading, HStack, Stack, Text} from "@chakra-ui/layout";
+import { Badge, Box, Center, Container, Heading, HStack, Stack, Text, Link} from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { Tag } from "@chakra-ui/tag";
 import Head from "next/head";
@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Layout from "../../components/layout";
-import { buildImageUrl } from '../../utils/api';
+import { buildImageUrl, fetcher } from '../../utils/api';
 import HistoryButton from '../../components/HistoryButton';
 
 const MovieContent = () => {
@@ -50,7 +50,7 @@ const MovieContent = () => {
         <HStack justify="space-between">
           <Heading as="h2">{data.title}</Heading>
           <Box>
-            <Tag colorScheme="purple" variant="solid">
+            <Tag colorScheme="green" variant="solid">
               {data.release_date}
             </Tag>
           </Box>
@@ -59,7 +59,7 @@ const MovieContent = () => {
 
         <Stack direction="row">
           {data.genres?.map((genre) => (
-            <Badge key={genre.id} colorScheme="purple" variant="outline">
+            <Badge key={genre.id} colorScheme="green" variant="outline">
               {genre.name}
             </Badge>
           ))}
@@ -70,11 +70,95 @@ const MovieContent = () => {
   );
 };
 
+function Top_ratedMovies(){
+  const { data, error } = useSWR('/api/movies/top_rated', fetcher)
+  const IMAGES_API = "https://image.tmdb.org/t/p/w300/";
+
+  if (error) return <div>Failed to load</div>
+  if (!data) {
+    return (
+      <Center h="full">
+        <CircularProgress isIndeterminate />
+      </Center>
+    );
+  }
+  return (
+    <Container
+      overflowX="scroll"
+      css={{
+        "&::-webkit-scrollbar": {
+          width: "5px",
+        },
+        "&::-webkit-scrollbar-track": {
+          borderRadius: "15px",
+        },
+        "&::-webkit-scrollbar-thumb:horizontal": {
+          background: "#4CBB78",
+          borderRadius: "15px",
+        },
+      }}
+    >
+      <HStack spacing={10}>
+        {data.results.map(({ id, title, release_date, poster_path }) => (
+          <Box
+            minW="200px"
+            pos="relative"
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+          >
+            <Link href={`/movies/${id}`} passHref>
+            <Image
+              src={IMAGES_API + `${poster_path}`}
+              alt={title}
+              layout="responsive"
+              width="300"
+              height="450"
+              objectFit="contain"
+              unoptimized
+            />
+
+            <Box p="3">
+              <Box display="flex" alignItems="baseline">
+                <Box
+                  color="gray.500"
+                  fontWeight="semibold"
+                  letterSpacing="wide"
+                  fontSize="xs"
+                  textTransform="uppercase"
+                  ml="2"
+                >
+                  Date &bull; {release_date}
+                </Box>
+              </Box>
+              <Box
+                mt="1"
+                fontWeight="semibold"
+                as="h4"
+                lineHeight="tight"
+                isTruncated
+              >
+                {title}
+              </Box>
+            </Box>
+            </Link>
+          </Box>
+        ))}
+      </HStack>
+    </Container>
+  );
+}
+
 export default function Movie() {
   return (
     <Layout>
-      <Container h="full">
+      <Container mb={20}>
         <MovieContent />
+      </Container>
+      <Container mb={10}>
+        <Text fontSize="3xl">Top Rated Movies</Text>
+        <Top_ratedMovies />
       </Container>
     </Layout>
   );
