@@ -48,18 +48,18 @@ function SearchResults() {
           align="center"
         >
           <Box minW="300px" pos="relative">
-            <Image
-              src={IMAGES_API + `${poster_path}`}
-              alt={title}
-              layout="responsive"
-              width="300"
-              height="450"
-              objectFit="contain"
-              unoptimized
-            />
-          </Box>
-          <Box minW="300px" pos="relative">
             <Link href={`/movies/${id}`} passHref>
+              <Box minW="300px" pos="relative">
+                <Image
+                  src={IMAGES_API + `${poster_path}`}
+                  alt={title}
+                  layout="responsive"
+                  width="300"
+                  height="450"
+                  objectFit="contain"
+                  unoptimized
+                />
+              </Box>
               <Box height="50">
                 <Button
                   as="a"
