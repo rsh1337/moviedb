@@ -1,4 +1,4 @@
-import { Badge, Box, Center, Container, Heading, HStack, Stack} from "@chakra-ui/layout";
+import { Badge, Box, Center, Container, Heading, HStack, Stack, Text} from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { Tag } from "@chakra-ui/tag";
 import Head from "next/head";
