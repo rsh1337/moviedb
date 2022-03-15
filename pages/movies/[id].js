@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Layout from "../../components/layout";
 import { buildImageUrl } from '../../utils/api';
+import HistoryButton from '../../components/HistoryButton';
 
 const MovieContent = () => {
   const { id } = useRouter().query;
@@ -27,13 +28,16 @@ const MovieContent = () => {
     );
   }
   return (
-    <Stack direction={['column', 'row']} spacing={4}>
+    <Stack direction={["column", "row"]} spacing={4}>
       <Head>
         <title>{data.title}</title>
       </Head>
       <Box minW="300px" pos="relative">
+        <HStack pos="absolute" zIndex={1} top={2} right={2}>
+          <HistoryButton />
+        </HStack>
         <Image
-          src={buildImageUrl(data.poster_path, 'w300')}
+          src={buildImageUrl(data.poster_path, "w300")}
           alt="Movie poster"
           layout="responsive"
           width="300"
