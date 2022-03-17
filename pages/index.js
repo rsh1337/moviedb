@@ -90,7 +90,7 @@ function PopularMovies(){
 
 function HistoryList(){
   const { id } = useRouter().query;
-  const { data, error } = useSWR(id && `/api/history/${id}`);
+  const { data, error } = useSWR(`/api/history/${id}`);
   const IMAGES_API = "https://image.tmdb.org/t/p/w300/";
 
   if (error) return <div>Failed to load</div>
