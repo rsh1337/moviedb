@@ -265,13 +265,13 @@ export default function Home() {
         <Divider />
       </Container>
       <Container mb={10}>
-      <Text fontSize="3xl">Watchlist List</Text>
+      <Text fontSize="3xl">WatchList</Text>
         <Divider />
         <WatchlistList />
         <Divider />
       </Container>
       <Container mb={10}>
-      <Text fontSize="3xl">History List</Text>
+      <Text fontSize="3xl">History</Text>
         <Divider />
         <HistoryList />
         <Divider />
