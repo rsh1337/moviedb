@@ -1,6 +1,5 @@
-import dbConnect from "../../utils/dbConnect";
-import History from "../../models/History";
-import { fetcher } from '../../utils/api';
+import dbConnect from "../../../utils/dbConnect";
+import History from "../../../models/History";
 
 export default async function handler(req, res) {
   await dbConnect();

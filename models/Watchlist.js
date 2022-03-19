@@ -7,6 +7,8 @@ global.models.Watchlist =
   mongoose.model('Watchlist', {
     id: { type: Number, required: true },
     title: { type: String, required: true },
+    poster_path: { type: String, required: true },
+    release_date: { type: String, required: true },
     date: { type: Date, default: Date.now },
   });
 
