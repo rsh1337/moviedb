@@ -5,11 +5,10 @@ export default function Home({ history }) {
   return (
     <div className="container">
       <div>
-        {history.map((user, index) => {
+        {history.map((movie, index) => {
           return (
             <div className="card" key={index}>
-              <h2>{user.id}</h2>
-              <p>{user.title}</p>
+              <h2>{movie.id}</h2>
             </div>
           );
         })}
