@@ -126,7 +126,7 @@ function WatchlistList(){
             borderRadius="lg"
             overflow="hidden"
           >
-            <Link href={`/movies/${id}`} passHref>
+            <Link href={`/watchlist/${id}`} passHref>
             <Image
               src={IMAGES_API + `${poster_path}`}
               alt={title}
