@@ -74,8 +74,9 @@ const MovieContent = () => {
   );
 };
 
-function Top_ratedMovies(){
-  const { data, error } = useSWR('/api/movies/top_rated', fetcher)
+function RecommendationsMovies(){
+  const { id } = useRouter().query;
+  const { data, error } = useSWR(id && `/api/recommendations/${id}`);
   const IMAGES_API = "https://image.tmdb.org/t/p/w300/";
 
   if (error) return <div>Failed to load</div>
@@ -161,8 +162,8 @@ export default function Movie() {
         <MovieContent />
       </Container>
       <Container mb={10}>
-        <Text fontSize="3xl">Top Rated Movies</Text>
-        <Top_ratedMovies />
+        <Text fontSize="3xl">Recommendations</Text>
+        <RecommendationsMovies />
       </Container>
     </Layout>
   );
