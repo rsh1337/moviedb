@@ -257,7 +257,7 @@ function HistoryList(){
 
 export default function Home() {
   return (
-    <Layout title="MovieDB.gov.ru">
+    <Layout title="MovieDB">
       <Container mb={10}>
         <Text fontSize="3xl">Popular Movies</Text>
         <Divider />
