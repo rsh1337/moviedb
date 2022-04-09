@@ -34,7 +34,7 @@ function PopularMovies(){
     >
       <HStack spacing={10}>
         {data.results.map(({ id, title, release_date, poster_path }) => (
-          <Box
+          <Box key={id}
             minW="300px"
             pos="relative"
             maxW="sm"
@@ -118,7 +118,7 @@ function WatchlistList(){
     >
       <HStack spacing={10}>
         {data.map(({ id, title, release_date, poster_path }) => (
-          <Box
+          <Box key={id}
             minW="300px"
             pos="relative"
             maxW="sm"
@@ -202,7 +202,7 @@ function HistoryList(){
     >
       <HStack spacing={10}>
         {data.map(({ id, title, release_date, poster_path }) => (
-          <Box
+          <Box key={id}
             minW="300px"
             pos="relative"
             maxW="sm"

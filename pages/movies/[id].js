@@ -105,7 +105,7 @@ function RecommendationsMovies(){
     >
       <HStack spacing={10}>
         {data.results.map(({ id, title, release_date, poster_path }) => (
-          <Box
+          <Box key={id}
             minW="200px"
             pos="relative"
             maxW="sm"
