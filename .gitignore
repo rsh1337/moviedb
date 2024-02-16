@@ -36,3 +36,7 @@ yarn-error.log*
 
 #Other Files
 README.mdd
+
+.env
+
+.next

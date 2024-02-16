@@ -1,5 +1,5 @@
 import { fetcher } from '../../../utils/api';
-import History from '../../../models/History';
+import History from '../../../models/history';
 import dbConnect from '../../../utils/dbConnect';
 
 const getMovieUrl = (id) =>
